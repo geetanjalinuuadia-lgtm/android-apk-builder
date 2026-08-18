@@ -5,15 +5,16 @@
       "name": "MN3X Master Patch",
       "description": "Core patch of the MN3X suite; extends and coordinates the other MN3X patches.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -25,15 +26,16 @@
       "name": "MN3X Litho Server Override Blocker",
       "description": "Locks Litho component states and drops incoming server UI payload overrides (MN3X M3 Express look protection).",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -45,15 +47,16 @@
       "name": "MN3X Universal Ad Execution Stripper",
       "description": "Strips ad network execution calls.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -65,15 +68,16 @@
       "name": "MN3X Premium Feature Unlocker",
       "description": "Unlocks client-side premium features.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -85,15 +89,16 @@
       "name": "MN3X Background Play Lock",
       "description": "Prevents video pause on focus loss.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -105,15 +110,16 @@
       "name": "MN3X Layout Element Hider",
       "description": "Hides promo and ad layout elements.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -125,15 +131,16 @@
       "name": "MN3X Package Renamer",
       "description": "Renames the app package from com.google.android.youtube to app.revanced.android.youtube in the manifest, resources and dex string pools (MN3X v21).",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -145,15 +152,16 @@
       "name": "MN3X Video Downloader",
       "description": "Replaces the download button so tapping downloads the selected video directly to the device with a choice of internal storage or SD card.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -165,15 +173,16 @@
       "name": "MN3X Custom Guest Mode",
       "description": "Strips the original guest mode and adds a custom local guest mode whose history and data are stored on-device and auto-deleted after 72 hours.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -185,15 +194,16 @@
       "name": "MN3X Incognito Mode",
       "description": "Adds an incognito mode: while on, nothing is saved (no history, no downloads recorded); everything works normally once turned off.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -205,230 +215,16 @@
       "name": "MN3X Monet Theme",
       "description": "Permanently strips YouTube's red accent colour and follows the system Android Material You (Monet) palette, falling back to lavender when Monet is unavailable; re-checks on every app launch.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
-  "version": "4.0.0",
-  "patches": [
-    {
-      "name": "MN3X Master Patch",
-      "description": "Core patch of the MN3X suite; extends and coordinates the other MN3X patches.",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MN3X Litho Server Override Blocker",
-      "description": "Locks Litho component states and drops incoming server UI payload overrides (MN3X M3 Express look protection).",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MN3X Universal Ad Execution Stripper",
-      "description": "Strips ad network execution calls.",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MN3X Premium Feature Unlocker",
-      "description": "Unlocks client-side premium features.",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MN3X Background Play Lock",
-      "description": "Prevents video pause on focus loss.",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MN3X Layout Element Hider",
-      "description": "Hides promo and ad layout elements.",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MN3X Package Renamer",
-      "description": "Renames the app package from com.google.android.youtube to app.revanced.android.youtube in the manifest, resources and dex string pools (MN3X v21).",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MN3X Video Downloader",
-      "description": "Replaces the download button so tapping downloads the selected video directly to the device with a choice of internal storage or SD card.",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MN3X Custom Guest Mode",
-      "description": "Strips the original guest mode and adds a custom local guest mode whose history and data are stored on-device and auto-deleted after 72 hours.",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MN3X Incognito Mode",
-      "description": "Adds an incognito mode: while on, nothing is saved (no history, no downloads recorded); everything works normally once turned off.",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "MN3X Monet Theme",
-      "description": "Permanently strips YouTube's red accent colour and follows the system Android Material You (Monet) palette, falling back to lavender when Monet is unavailable; re-checks on every app launch.",
-      "default": true,
-      "compatiblePackages": [
-        {
-          "name": "com.google.android.youtube",
-          "versions": [
-            "21.04.223"
-          ]
-        },
-        {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -440,15 +236,16 @@
       "name": "MN3X Share Sheet",
       "description": "Adds a fully M3E-styled custom YouTube share sheet with a settings toggle to switch between the system share sheet and the MN3X M3E share sheet.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -460,15 +257,16 @@
       "name": "MN3X Account Sheet",
       "description": "Moves the profile icon from the bottom navigation to the top right like other Google apps and opens an M3E-style account sheet; Clean up space opens Files by Google and no Get storage option is shown.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -480,15 +278,16 @@
       "name": "MN3X Custom Settings",
       "description": "Adds MN3X Settings inside the account sheet with per-patch on/off toggles for every patched MN3X patch; Custom Settings itself is permanent and not toggleable.",
       "default": true,
+      "dependencies": [],
       "compatiblePackages": [
         {
-          "name": "com.google.android.youtube",
+          "packageName": "com.google.android.youtube",
           "versions": [
             "21.04.223"
           ]
         },
         {
-          "name": "app.revanced.android.youtube",
+          "packageName": "app.revanced.android.youtube",
           "versions": [
             "21.04.223"
           ]
@@ -497,4 +296,4 @@
       "options": []
     }
   ]
-        }
+}
