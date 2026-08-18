@@ -603,5 +603,6 @@
       ],
       "options": []
     }
-  ]
+  ],
+  "NOTE": "MN3X (MAT Neutral 3 Express) Patches for Morphe Manager. Targets YouTube 21.04.223 (com.google.android.youtube and app.revanced.android.youtube)."
 }
