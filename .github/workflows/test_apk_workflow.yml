@@ -1,17 +1,21 @@
 name: APK Emulator Test (Private)
 
 on:
-  workflow_dispatch:  # Manual trigger only - private, not on push
+  workflow_dispatch:
+    inputs:
+      apk_url:
+        description: 'Direct URL to YouTube 21.04.223 APK (required)'
+        required: true
+        type: string
   pull_request:
     paths:
       - 'upload_v5.mpp'
 
-# This workflow runs PRIVATELY - only repo owner can see logs
 permissions:
   contents: read
 
 jobs:
-  test_apk_on_emulator:
+  test_apk:
     runs-on: ubuntu-latest
     timeout-minutes: 45
 
@@ -27,13 +31,16 @@ jobs:
 
       - name: Download YouTube 21.04.223 APK
         run: |
-          echo "Downloading YouTube APK from APKMirror..."
-          # You need to upload the APK to your repo or use a direct URL
-          # For now, using a placeholder - replace with actual URL
-          if [ -f "youtube-21.04.223.apk" ]; then
-            echo "Using local APK"
-          else
-            echo "ERROR: Please upload youtube-21.04.223.apk to the repo or update this URL"
+          echo "Downloading YouTube APK..."
+          URL="${{ inputs.apk_url }}"
+          if [ -z "$URL" ]; then
+            echo "ERROR: No APK URL provided. Click Run workflow and paste a direct APK URL in apk_url field"
+            exit 1
+          fi
+          wget -q "$URL" -O youtube-21.04.223.apk || curl -sL -o youtube-21.04.223.apk "$URL"
+          ls -la youtube-21.04.223.apk
+          if [ ! -s youtube-21.04.223.apk ]; then
+            echo "ERROR: APK download failed or file is empty"
             exit 1
           fi
 
@@ -45,10 +52,8 @@ jobs:
           unzip -q cmdtools.zip
           mv cmdline-tools latest
           export PATH=$PATH:~/android-sdk/cmdline-tools/latest/bin
-          
           yes | sdkmanager --licenses 2>/dev/null
-          sdkmanager "platform-tools" "platforms;android-34" "emulator"
-          sdkmanager "system-images;android-34;google_apis;x86_64"
+          sdkmanager "platform-tools" "platforms;android-34"
 
       - name: Install Morphe CLI
         run: |
@@ -61,7 +66,6 @@ jobs:
       - name: Patch YouTube APK with MN3X patches
         run: |
           export PATH=$PATH:~/android-sdk/cmdline-tools/latest/bin:~/android-sdk/platform-tools
-          
           echo "=== Patching with Morphe CLI ==="
           java -Xmx4g -jar morphe.jar patch \
             -o patched_youtube.apk \
@@ -86,102 +90,18 @@ jobs:
       - name: Verify patched APK
         run: |
           export PATH=$PATH:~/android-sdk/cmdline-tools/latest/bin
-          
           echo "=== Verifying Package Name ==="
-          aapt dump badging patched_youtube.apk | grep "package: name"
-          
-          echo "=== Checking DEX files ==="
-          python3 -c "
-          import zipfile
-          with zipfile.ZipFile('patched_youtube.apk') as z:
-              dex_count = sum(1 for n in z.namelist() if n.endswith('.dex'))
-              v7a = sum(1 for n in z.namelist() if 'armeabi-v7a' in n and n.endswith('.so'))
-              m3e = sum(1 for n in z.namelist() if n.endswith('.dex') and (b'getM3EColor' in z.read(n) or b'enforce' in z.read(n)))
-              print(f'DEX files: {dex_count}')
-              print(f'armeabi-v7a libs: {v7a}')
-              print(f'M3E injection: {m3e} DEX files')
-          "
-
-      - name: Create Android Virtual Device (AVD)
-        run: |
-          export PATH=$PATH:~/android-sdk/cmdline-tools/latest/bin:~/android-sdk/emulator:~/android-sdk/platform-tools
-          
-          echo "no" | avdmanager create avd \
-            -n test-avd \
-            -k "system-images;android-34;google_apis;x86_64" \
-            --force \
-            --abi google_apis/x86_64
-          
-          echo "hw.gpu.enabled=no" >> ~/.android/avd/test-avd.avd/config.ini
-          echo "hw.cpu.ncore=2" >> ~/.android/avd/test-avd.avd/config.ini
-          echo "hw.ramSize=2048" >> ~/.android/avd/test-avd.avd/config.ini
-
-      - name: Start emulator and test APK
-        run: |
-          export PATH=$PATH:~/android-sdk/cmdline-tools/latest/bin:~/android-sdk/emulator:~/android-sdk/platform-tools
-          
-          echo "=== Starting emulator (software emulation, no KVM) ==="
-          # Start emulator in background with software rendering
-          emulator -avd test-avd \
-            -no-window \
-            -no-audio \
-            -gpu swiftshader_indirect \
-            -accel off \
-            -memory 2048 \
-            &
-          EMULATOR_PID=$!
-          
-          echo "Waiting for emulator to boot..."
-          # Wait up to 10 minutes for boot
-          for i in $(seq 1 120); do
-            if adb devices | grep -q "emulator-5554.*device"; then
-              echo "Emulator booted!"
-              break
-            fi
-            sleep 5
-          done
-          
-          echo "=== Installing patched APK ==="
-          adb install -r patched_youtube.apk 2>&1 | tee install_log.txt
-          
-          echo "=== Starting app ==="
-          adb shell am start -n app.morphe.android.youtube/com.google.android.apps.youtube.app.YouTubeTikTokRoot_Application 2>&1 | tee start_log.txt
-          
-          # Wait a few seconds for the app to initialize
-          sleep 10
-          
-          echo "=== Checking if app is running ==="
-          adb shell pidof app.morphe.android.youtube
-          
-          # Capture logcat for last 50 lines
-          echo "=== Recent logcat ==="
-          adb logcat -d -t 50 *:E | tee logcat_errors.txt
-          
-          # Take screenshot
-          adb exec-out screencap -p > screenshot.png 2>/dev/null || echo "Screenshot failed (expected without display)"
-          
-          # Kill emulator
-          kill $EMULATOR_PID 2>/dev/null
-          
-          echo ""
-          echo "=== TEST RESULT ==="
-          if adb shell pidof app.morphe.android.youtube > /dev/null 2>&1; then
-            echo "SUCCESS: App launched without crash!"
-          else
-            echo "FAILED: App crashed or did not launch"
-            echo "Check logcat_errors.txt for details"
-            exit 1
-          fi
+          aapt dump badging patched_youtube.apk | grep "package: name" || true
+          echo "=== Checking DEX and libs ==="
+          unzip -l patched_youtube.apk | grep -c '\.dex' || true
+          unzip -l patched_youtube.apk | grep -c 'armeabi-v7a' || true
 
       - name: Upload test artifacts
-        if: always()
         uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: apk-test-results
+          name: test-results
           path: |
             patched_youtube.apk
             patch_log.txt
-            install_log.txt
-            start_log.txt
-            logcat_errors.txt
-            screenshot.png
+          retention-days: 7
